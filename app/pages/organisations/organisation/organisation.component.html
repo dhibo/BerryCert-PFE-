@@ -1,0 +1,102 @@
+<div *ngIf="hasOrganization; else noOrganization">
+
+  <div class="container" style="padding: 2rem;" id="hanging-icons">
+  <div class="row align-items-center">
+    <h2 class="pb-2 border-bottom col">{{organisation.name}} Company </h2>
+    <div class="col text-end">
+     
+      <button mat-raised-button class="button m-2" color="warn" [routerLink]="'/admin/'" [disabled]="isAdminDisabled()">
+        <i class="bi bi-terminal-dash"></i> Admin Interface
+      </button>
+      <button mat-raised-button class="button" color="primary" [routerLink]="'/admin'" disabled>
+        <i class="bi bi-door-open"></i> Leave Company
+      </button>
+      
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <!-- Organization Card Example -->
+      <div  class="card shadow mb-2 border-0">
+        <div class="card-header py-2 d-flex justify-content-between align-items-center border-0">
+          <div>
+            <h6 class="m-0 font-weight-bold text-primary">{{organisation.name}}</h6>
+          </div>
+          <div>
+            <p class="m-0 text-muted"><i class="bi bi-person-fill"></i> {{organisation.owner}}</p>
+          </div>
+        </div>
+        <img src="./assets/images/org.png" class="card-img-top" alt="Organization Logo">
+        <div class="card-body">
+          <div class="py-2 d-flex justify-content-between align-items-center border-0">
+            <div>
+              <h6 class="m-0 font-weight-bold text-primary m-2"><i class="bi bi-pin-map-fill m-2"></i>{{organisation.state_or_province_name}}</h6>
+            </div>
+            <div>
+              <p class="m-0 text-muted">  {{organisation.country_name | uppercase}}</p>
+            </div>
+          </div>
+          <p>{{organisation.description}}</p>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      
+        <!-- Card Body -->
+       <app-membres></app-membres>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #noOrganization>
+
+  <div class="container px-4 py-5" id="hanging-icons">
+    
+    <div class="row align-items-center">
+      <h2 class="pb-2 border-bottom col"><i class="bi bi-building-fill"></i>Company</h2>
+      <div class="col text-end">
+        <button mat-raised-button class="button" color="primary" (click)="invitation()">
+          <i class="bi bi-briefcase-fill"></i>  Invitations
+        </button>
+        <button mat-raised-button class="button m-2" color="warn" (click)="requests()">
+          <i class="bi bi-briefcase-fill"></i>  My Requests
+        </button>
+      </div>
+      <div class="d-flex flex-column justify-content-center align-items-center text-center">
+        <img src="./assets/images/org.png" class="image mb-3" alt="No documents found" style="margin-bottom: 1rem;">
+        <h1 class="mb-3" style="color:rgb(66, 66, 66); font-size: larger; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 800;">
+          Join your team    
+        </h1>
+        <div class="mb-3">
+          <button mat-raised-button class="button mr-3" color="primary" (click)="joinCompany()">
+            Join Company
+          </button>
+          <span class="m-3"><b>Or</b></span>
+          <button mat-raised-button class="button ml-3" color="primary" (click)="createCompany()">
+            Create Company
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .image {
+      max-width: 100%;
+      height: auto;
+    }
+
+    @media only screen and (min-width: 768px) {
+      .image {
+        max-width: 80%;
+      }
+    }
+
+    @media only screen and (min-width: 992px) {
+      .image {
+        max-width: 60%;
+      }
+    }
+  </style>
+</ng-template>

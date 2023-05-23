@@ -1,0 +1,87 @@
+<div class="container px-4 py-5" id="hanging-icons">
+  <div class="row align-items-center">
+    <mat-icon>files</mat-icon>
+    <h2 class="pb-2 border-bottom col">My Documents</h2>
+    <div class="col text-end">
+      <button mat-raised-button class="button" color="primary" (click)="openAddDocumentDialog()">
+        <i class="bi bi-file-earmark-plus-fill"></i>  Add Document
+      </button>
+    </div>
+  </div>
+  <div *ngIf="documents && documents.length > 0; else noDocuments">
+   
+    <div class="row">
+      <div class="col-md-4" *ngFor="let document of documents">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <div class="d-flex justify-content-between align-items-center">
+              <strong class="d-inline-block mb-2" *ngIf="!document.isEditing" [ngClass]="{'text-success': document.privacy === 'Public', 'text-danger': document.privacy !== 'Public'}" >{{ document.privacy }}</strong>
+              <div class="justify-content-end">
+                <span *ngIf="document.signed_status ==='Signed'" (click)="showCertificate(document)">
+                  <img src="assets/images/certificate.png" width="40px">
+                  </span>
+              </div>
+           
+              
+            </div>
+            
+            
+            <select class="form-select mb-3" *ngIf="document.isEditing" [(ngModel)]="document.privacy">
+              <option value="Public">Public</option>
+              <option value="Private">Private</option>
+            </select>
+            <div class="d-flex justify-content-between align-items-center">
+              <h3 class="mb-0" *ngIf="!document.isEditing">{{ document.title | slice:0:10 }}{{ document.title.length > 10 ? '...' : '' }}</h3>
+              <input class="form-control m-2" type="text" *ngIf="document.isEditing" [(ngModel)]="document.title">
+              <div *ngIf="!document.isEditing">
+                <button mat-icon-button color="primary" (click)="toggleEditMode(document)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </div>
+              <div *ngIf="document.isEditing">
+                <button mat-raised-button color="primary" (click)="save(document)">
+                  Save
+                </button>
+              </div>
+            </div>            <div class="mb-1 text-muted">
+              <span class="text-muted">
+                <i class="bi bi-filetype-exe"></i>                  {{ document.filetype }}
+              </span>
+              <span class="badge " [ngClass]="{'bg-success': document.signed_status === 'Signed', 'bg-warning': document.signed_status !== 'Signed' && document.signed_status !== null, 'bg-danger': document.signed_status === 'Not Signed', 'bg-white': document.signed_status === null}">
+<i></i> {{ document.signed_status || 'Waiting' }}
+</span>
+            </div>
+            <p class="card-text mb-auto" style="margin-top: 0.5rem;" *ngIf="!document.isEditing">{{ document.description }}</p>
+            <textarea class="form-control mb-3" rows="4" *ngIf="document.isEditing" [(ngModel)]="document.description"></textarea>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              
+              <button mat-raised-button color="warn" class="flex-grow-1 mr-2" (click)="delete(document)">
+                <mat-icon>delete</mat-icon> delete
+              </button>
+            </div>
+            <button mat-raised-button style="margin-top: 0.5rem;" color="primary"
+            [disabled]="document.signed_status === 'Signed' || document.signed_status === 'Rejected'"
+            (click)="addrequest(document)">
+      <div *ngIf="document.signed_status === 'Signed'">-{{expirationDates[document.id]}} Day </div>
+      <div *ngIf="document.signed_status !== 'Signed'">Request For Sign</div>
+    </button>
+    
+              </div>
+        </div>
+      </div><nav></nav>
+    </div>
+  </div>
+  <ng-template class="nodocs" #noDocuments>
+    <div class="d-flex flex-column justify-content-center align-items-center text-center">
+      <img src="./assets/images/nodocs.png" class="image mb-3" alt="No documents found">
+      <h2 class="mb-3" style="color:rgb(66, 66, 66); font-size: larger; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 600;">
+        Sorry, we don't have any documents yet!
+      </h2>
+      <div class="mb-3">
+        <button mat-raised-button class="button" color="primary" (click)="openAddDocumentDialog()">
+          Add Document
+        </button>
+      </div>
+    </div>
+  </ng-template>
+  

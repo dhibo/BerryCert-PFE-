@@ -1,0 +1,31 @@
+<div class="card shadow mb-4 border-0">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <h6 class="m-0 font-weight-bold text-primary">Document Logs</h6>
+      <div class="d-flex">
+        <div class="flex-grow-1 me-2">
+        <input type="text" class="form-control" style="border-radius: 2rem;" id="filterAction" placeholder="Filter by action" [(ngModel)]="selectedAction">
+        </div>
+        <button mat-raised-button color="primary" style="border-radius: 1rem;" (click)="applyFilters()">Search</button>
+      </div>
+      
+    </div>
+    <div class="card-body">
+      <div class="list-group">
+        <a class="list-group-item list-group-item-action d-flex gap-3 py-3" *ngFor="let log of filteredLogs" style="margin-bottom: 10px;">
+          <img src="https://www.vhv.rs/dpng/d/544-5445462_people-icons-png-flat-person-icon-png-transparent.png" alt="user avatar" width="32" height="32" class="rounded-circle flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h6 class="mb-0">{{ log.owner }}</h6>
+              <p class="mb-0 opacity-75">Action: {{ log.action }}</p>
+              <p class="mb-0 opacity-75">Document ID: {{ log.document_id }}</p>
+              <p class="mb-0 opacity-75">User ID: {{ log.user_id }}</p>
+              <p class="mb-0 opacity-75">Created Date: {{ log.created_date }}</p>
+              <p class="mb-0 opacity-75">Created Time: {{ log.created_time }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  

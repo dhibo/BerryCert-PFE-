@@ -1,0 +1,26 @@
+<div class="container mt-5" style="padding-bottom : 2rem ; padding-left: 1rem; padding-right: 1rem;">
+    <h1 class="text-start mb-3"><i class="bi bi-person-add"></i>
+      Send Invitation</h1>
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" id="form">
+          <div class="mb-3">
+            <label for="title" class="form-label">Guest Email</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+              <input type="text" class="form-control" formControlName="email" id="email" placeholder="Enter the email " required>
+              <div class="invalid-feedback">
+Email is required              </div>
+            </div>
+          </div>
+          
+  
+          <div class="text-center">
+            <button type="submit" style="margin:1rem" mat-raised-button color="primary">Send</button>
+            <button type="button" mat-raised-button  (click)="onCancel()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,62 @@
+<div class="bg-gray-200 w-full min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="d-lg-flex align-items-center space-x-5">
+    <div class="w-5/6 md:w-3/4 lg:w-2/3 xl:w-500px 2xl:w-550px mt-8 mx-auto px-4 py-6 rounded-lg">
+
+      <div class="d-lg-none flex justify-content-center items-center h-full">
+        <img src="./assets/images/logo.png" style="justify-content: center; text-align: center;" alt="Company Logo" width="150px">
+      </div>
+      <h2 class="text-center text-2xl font-bold tracking-wide text-gray-800">Sign Up</h2>
+      <p class="text-center text-sm text-gray-600 mt-2">Already have an account? <a href="/login" class="text-blue-600 hover:text-blue-700 text-decoration-none" title="Sign In">Sign in here</a></p>
+
+      <form class="my-4" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+        <div class="row g-2">
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="first_name" placeholder="First Name" formControlName="first_name" required>
+              <label for="first_name"><i class="bi bi-person-fill"></i>First Name</label>
+              <div class="invalid-feedback">First name is required</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="last_name" placeholder="Last Name" formControlName="last_name" required>
+              <label for="last_name"><i class="bi bi-person-fill"></i>Last Name</label>
+              <div class="invalid-feedback">Last name is required</div>
+            </div>
+          </div>
+        </div>
+          
+        <div class="mb-3">
+          <div class="form-floating">
+            <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email" required>
+            <label for="email"><i class="bi bi-envelope-fill"></i> Email</label>
+            <div class="invalid-feedback">
+              <div *ngIf="signInForm.get('email')?.hasError('required')">Email is required</div>
+              <div *ngIf="signInForm.get('email')?.hasError('email')">Invalid email format</div>
+            </div>
+          </div>
+        </div>
+          
+        <div class="mb-3">
+          <div class="form-floating">
+            <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password" required>
+            <label for="password"><i class="bi bi-key-fill"></i> Password</label>
+            <div class="invalid-feedback">Password is required</div>
+          </div>
+        </div>
+
+        <div class="d-grid gap-2">
+          <button type="submit" mat-raised-button color="primary" class="btn btn-primary px-4 py-3 text-lg text-white uppercase">
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="d-none d-lg-flex align-items-center justify-content-center">
+      <img src="./assets/images/sign.png" width="700px">
+    </div>
+  </div>
+</div>
+
+

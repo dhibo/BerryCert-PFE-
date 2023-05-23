@@ -1,0 +1,16 @@
+
+.form-icon-input {
+  position: relative;
+}
+
+.form-icon-input input {
+  padding-left: 2.5rem;
+}
+
+.form-icon-input i {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+}

@@ -1,0 +1,8 @@
+.document-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  

@@ -1,0 +1,49 @@
+a{
+  font-size: 25px;
+}
+span{
+  color: #ff4284;
+}
+
+img{
+  position: absolute;
+  top: 10px;
+  right: 435px;
+  height: 45px;
+  width: 45px;
+}
+
+.d-lg-flex {
+  position: absolute;
+  top: 10px;
+  right: 265px;
+}
+
+.d-lg-flex .d-none{
+  color: grey;
+}
+
+ /* hide user info on mobile */
+@media (max-width: 991.98px) {
+  .d-lg-flex {
+    display: none;
+  }
+}
+
+/* hide logout button on desktop */
+@media (min-width: 992px) {
+  .d-lg-none {
+    display: none;
+  }
+}
+
+/*image position*/
+@media  (max-width: 767px) {
+  img {
+    position: relative;
+    top: auto;
+    left: 55px;
+    height: 45px;
+    width: 45px;
+  }
+}

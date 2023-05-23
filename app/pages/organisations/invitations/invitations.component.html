@@ -1,0 +1,36 @@
+<div class="d-flex flex-column p-4 gap-4 py-md-5" style="height: 100%;">
+  <div class="list-group flex">
+    <a *ngFor="let invitation of invitations" class="list-group-item list-group-item-action d-flex gap-3 py-10 border-0" aria-current="true">
+      <img src="./assets/images/url.png" alt="Avatar" width="50" height="50" class="rounded-circle flex-shrink-0">
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">{{ isAdmin ? invitation.guest : invitation.organisation }}</h6>
+          <p class="mb-0 opacity-75">{{invitation.message}}</p>
+          <p class="mb-0 opacity-75" [ngClass]="{'text-success': invitation.request_status === 'Accepted', 'hourglass-icon': invitation.request_status === 'Waiting'}">
+            <i class="bi bi-hourglass-split" *ngIf="invitation.request_status === 'Waiting'"></i>{{invitation.request_status}}
+          </p>
+        </div>
+        <div class="d-flex flex-column justify-content-between">
+          <div class="d-flex justify-content-end">
+            <ng-container *ngIf="isAdmin; else notAdmin">
+              <button mat-mini-fab color="accent" [disabled]="invitation.request_status !== 'Waiting'" (click)="Delete(invitation)">
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </ng-container>
+            <ng-template #notAdmin>
+              <div class="d-flex justify-content-end">
+                <button mat-mini-fab color="primary" [disabled]="invitation.request_status !== 'Waiting'" class="me-2" (click)="Accept(invitation)">
+                  <i class="bi bi-check-lg"></i>
+                </button>
+                <button mat-mini-fab color="accent" [disabled]="invitation.request_status !== 'Waiting'" (click)="Delete(invitation)">
+                  <i class="bi bi-x-lg"></i>
+                </button>
+              </div>
+            </ng-template>
+          </div>
+          <p class="mb-0 text-end">{{getTimeDifference(invitation.created_at)}}</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

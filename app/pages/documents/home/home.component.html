@@ -1,0 +1,30 @@
+
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon"> folder</mat-icon>
+      My documents
+    </ng-template>
+    <app-list-documents></app-list-documents>
+
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">folder_shared</mat-icon>
+      Shared Documents
+    </ng-template>
+    <app-public-documents></app-public-documents>
+    </mat-tab>
+
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">vpn_lock</mat-icon>
+        Company Documents  
+    </ng-template>
+    <app-all-documents></app-all-documents>
+
+  </mat-tab>
+</mat-tab-group>
+<router-outlet></router-outlet>

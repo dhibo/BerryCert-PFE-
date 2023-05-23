@@ -1,0 +1,31 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+.logo {
+  margin-right: 16px;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.login-button {
+  background-color: #3f51b5;
+  color: #fff;
+  margin-right: 8px;
+}
+
+.register-button {
+  background-color: #fff;
+  color: #3f51b5;
+  border: 1px solid #3f51b5;
+}

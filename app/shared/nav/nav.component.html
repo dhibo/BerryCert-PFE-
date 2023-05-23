@@ -1,0 +1,41 @@
+  <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Thirteenth navbar example">
+    <div class="container-fluid">
+      <a class="navbar-brand me-0" [routerLink]="''">DigitalBerry</a>
+      <div class="" style="text-align: center; justify-content: center;">
+        <img src="./assets/images/user.png.png" [routerLink]="['/profile',user.id]" width="42" height="42" style="border: 1px solid rgb(255, 255, 255); border-radius: 50%;">
+      </div>
+      <div class="d-lg-flex flex-column ">
+        <b>{{user.first_name}} {{user.last_name}}</b>
+        <span class="d-none d-lg-block">{{user.email}}</span>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+        </ul>
+        <div class="d-flex align-items-center">
+          
+        
+          <button mat-button (click)="logout()"><i class="bi bi-box-arrow-right m-2"></i>Logout</button>
+        </div>
+      </div>
+    </div>
+    <style>
+      /* hide user info on mobile */
+      @media (max-width: 991.98px) {
+        .d-lg-flex {
+          display: none;
+        }
+      }
+    
+      /* hide logout button on desktop */
+      @media (min-width: 992px) {
+        .d-lg-none {
+          display: none;
+        }
+      }
+    </style>
+  </nav>

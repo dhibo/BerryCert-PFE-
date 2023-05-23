@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+
+
+html, body { height: 100vh; width: 100%; }
+body { margin: 0;  }
+
+
+/* Override Bootstrap CSS to prevent background from becoming gray and unclickable when modal is shown */
+.modal-open {
+    overflow: visible !important;
+  }
+
+  .document-toast {
+   background-color: green;
+  }
+/* Sans-serif font family */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+/* Serif font family */
+.serif {
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+/* Monospaced font family */
+.mono {
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}

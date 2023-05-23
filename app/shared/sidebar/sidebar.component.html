@@ -1,0 +1,56 @@
+<div class="flex-shrink-0 p-3" class="sidebar">
+  <ul class="list-unstyled ps-0">
+    <li class="mb-1">
+      <button class="btn d-inline-flex align-items-center rounded border-0 collapsed" [routerLink]="''">
+        <i class="bi bi-house-door-fill m-1"></i> <b>Home</b>
+      </button>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+        <i class="bi bi-building-fill m-1"></i> Company
+      </button>
+      <div class="collapse" id="dashboard-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a [routerLink]="'/organisation'" class="link-dark d-inline-flex text-decoration-none rounded" class="subLink">My Company</a></li>
+          <li>
+            <a *ngIf="!userOrganization" (click)="joinCompany()" class="link-dark d-inline-flex text-decoration-none rounded" class="subLink">Join Company</a>
+            <a *ngIf="userOrganization" class="link-dark d-inline-flex text-decoration-none rounded" [ngClass]="{'disabled': true}" class="subLink">Join Company</a>
+          </li>
+          <li>
+            <a *ngIf="!userOrganization" (click)="createCompany()" class="link-dark d-inline-flex text-decoration-none rounded" class="subLink">Create Company</a>
+            <a *ngIf="userOrganization" class="link-dark d-inline-flex text-decoration-none rounded" [ngClass]="{'disabled': true}" class="subLink">Create Company</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#documents-collapse" aria-expanded="false">
+        <i class="bi bi-folder-fill m-1"></i> Documents
+      </button>
+      <div class="collapse" id="documents-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a *ngIf="!userOrganization" (click)="addDocument()" class="link-dark d-inline-flex text-decoration-none rounded"  [ngClass]="{'disabled': true}" class="subLink"> Add Document</a></li>
+          <li><a *ngIf="userOrganization" (click)="addDocument()" class="link-dark d-inline-flex text-decoration-none rounded" class="subLink"> Add Document</a></li>
+
+          <li><a *ngIf="userOrganization" [routerLink]="'/documents/Mydocuments'"   class="link-dark d-inline-flex text-decoration-none rounded" class="subLink">My Documents</a></li>
+          <li><a *ngIf="userOrganization" [routerLink]="'/documents/OrganisationDocuments'"  class="link-dark d-inline-flex text-decoration-none rounded" class="subLink">Organisation Documents</a></li>
+          <li><a *ngIf="userOrganization" [routerLink]="'documents/SigingRequest'"  class="link-dark d-inline-flex text-decoration-none rounded" class="subLink">Sign Requests</a></li>
+          <li><a *ngIf="!userOrganization" [routerLink]="'documents/SigingRequest'"   [ngClass]="{'disabled': true}" class="link-dark d-inline-flex text-decoration-none rounded" class="subLink">SigingRequest</a></li>
+          <li><a *ngIf="!userOrganization" [routerLink]="'/documents/Mydocuments'"   [ngClass]="{'disabled': true}" class="link-dark d-inline-flex text-decoration-none rounded" class="subLink">My Documents</a></li>
+          <li><a *ngIf="!userOrganization" [routerLink]="'/documents/OrganisationDocuments'" [ngClass]="{'disabled': true}"  class="link-dark d-inline-flex text-decoration-none rounded" class="subLink">Organisation Documents</a></li>
+          </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button  class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#logs-collapse" aria-expanded="false">
+        <i class="bi bi-list-check m-1"></i>Logs
+      </button>
+      <div class="collapse" id="logs-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a [routerLink]="'/logs/user'" class="link-dark d-inline-flex text-decoration-none rounded" class="subLink"> Connexion </a></li>
+          <li><a [routerLink]="'/logs/doc'" class="link-dark d-inline-flex text-decoration-none rounded" class="subLink">Document </a></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>

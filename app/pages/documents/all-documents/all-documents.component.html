@@ -1,0 +1,41 @@
+<div class="container px-4 py-5" id="hanging-icons">
+  <div class="row align-items-center">
+    <h2 class="pb-2 border-bottom col"><mat-icon class="example-tab-icon">public</mat-icon>Public Documents</h2>
+    <div class="col text-end">
+      <button mat-raised-button class="button" color="primary" [routerLink]="'/documents/SigingRequest'">
+        <i class="bi bi-file-earmark-plus-fill"></i>  My requests
+      </button>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-4" *ngFor="let document of documents">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2" [ngClass]="{'text-success': document.privacy === 'Public', 'text-danger': document.privacy !== 'Public'}">{{ document.privacy }}</strong>
+          <h3 class="mb-0">{{ document.title | slice:0:20 }}{{ document.title.length > 10 ? '...' : '' }}</h3>
+          <div class="mb-1 text-muted">
+            <span class="text-muted">
+              <i class="bi bi-person-fill me-2"></i>
+              {{ document.owner }}
+            </span>
+          </div>
+                  <p class="card-text mb-auto" style="margin-top: 0.5rem;">{{ document.description }}</p>
+          <button mat-raised-button style="margin-top: 0.5rem;" color="primary" (click)="openAccessRequestDialog(document)">Request Access</button>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <ng-container *ngIf="document.type === 'pdf'">
+            <i class="bi bi-file-earmark-pdf text-danger" style="font-size: 10rem; height: 250px; width: 200px;"></i>
+          </ng-container>
+          <ng-container *ngIf="document.type === 'xml'">
+            <i class="bi bi-file-earmark-code text-warning" style="font-size: 10rem; height: 250px; width: 200px;"></i>
+          </ng-container>
+          
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+ 
+</div>

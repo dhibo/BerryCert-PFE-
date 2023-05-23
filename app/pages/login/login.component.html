@@ -1,0 +1,46 @@
+<div class=" min-vh-100 d-flex align-items-center justify-content-center bg-white">
+  <div class="container-lg">
+    <div class="row justify-content-center align-items-center">
+      <!-- Image column (hidden on phone) -->
+      <div class="col-lg-6 d-none d-lg-flex justify-content-center">
+        <img src="./assets/images/loginpage.png" width="700px">
+      </div>
+      <!-- Form column -->
+      <div class="col-lg-6 col-md-8 col-sm-10 col-12 bg-white rounded-lg px-4 py-5">
+        <h2 class="text-center text-2xl font-bold tracking-wide text-gray-800 mb-4">Log In</h2>
+        <p class="text-center text-sm text-gray-600 mb-4">Don't have an account? <a [routerLink]="'/sign'" class="text-blue-600 hover:text-blue-700 hover-underline" title="Sign Up">Sign up here</a></p>
+        <form class="text-sm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="mb-4">
+            <label class="form-label">Email</label>
+            <div class="form-icon-input">
+              <i class="bi bi-envelope"></i>
+              <input type="email" class="form-control" formControlName="email" required placeholder="@email.com">
+            </div>
+            <div class="invalid-feedback" *ngIf="loginForm.get('email')?.hasError('required')">Email is required</div>
+            <div class="invalid-feedback" *ngIf="loginForm.get('email')?.hasError('email')">Invalid email format</div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Password</label>
+            <div class="form-icon-input">
+              <input type="password" class="form-control" formControlName="password" required placeholder="********">
+              <i class="bi bi-lock"></i>
+            </div>
+            <div class="invalid-feedback" *ngIf="loginForm.get('password')?.hasError('required')">Password is required</div>
+          </div>
+          <div class="d-grid gap-2">
+            <button type="submit" mat-raised-button  color="primary" >Log In</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Hide image on phone */
+  @media (max-width: 767px) {
+    .d-lg-flex {
+      display: none !important;
+    }
+  }
+</style>

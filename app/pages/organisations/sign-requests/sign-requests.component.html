@@ -1,0 +1,67 @@
+<div class="main-content">
+  <div class="container mt-3">
+    <!-- Table -->
+    <h2 class="mb-5">Signing Requests</h2>
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0">Request Table</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush" matSort (matSortChange)="sortData($event)">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col" mat-sort-header="filetype">File Type</th>
+                  <th scope="col" mat-sort-header="title">Title</th>
+                  <th scope="col" mat-sort-header="privacy">Privacy</th>
+                  <th scope="col" mat-sort-header="signedStatus">Signed Status</th>
+                  <th scope="col" mat-sort-header="name">Owner</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let request of sortedData">
+                  <td>
+                    <ng-container *ngIf="request.document.filetype==='.pdf'">
+                      <img alt="PDF" src="./assets/images/pdf.png" width="40">
+                    </ng-container>
+                    <ng-container *ngIf="request.document.filetype==='.xml'">
+                      <img alt="XML" src="/assets/images/xml.jpg" width="40">
+                    </ng-container>
+                  </td>
+                  <td>{{ request.document.title }}</td>
+                  <td class="text-center">
+                    <ng-container *ngIf="request.document.privacy === 'Private'; else publicPrivacy">
+                      <i class="bi bi-eye-slash"></i>
+                    </ng-container>
+                    <ng-template #publicPrivacy>
+                      <i class="bi bi-eye"></i>
+                    </ng-template>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="badge"
+                          [ngClass]="{'bg-success': request.request_status === 'Accepted', 'bg-warning': request.request_status === 'In Progress' && request.request_status !== null, 'bg-danger': request.request_status === 'Rejected', 'bg-white': request.request_status === null}">
+                      <i></i> {{ request.request_status || 'Waiting' }}
+                    </span>
+                  </td>
+                  <td>{{ request.owner }}</td>
+                  <td>
+                    <div class="d-flex justify-content-end">
+                      <button type="button" class="btn btn-icon" (click)="reject(request.document.id)" [disabled]="request.document.signed_status === 'Signed'">
+                        <i class="bi bi-x-lg"></i>
+                      </button>
+                      <button type="button" class="btn btn-icon" (click)="accept(request.document.id)" [disabled]="request.document.signed_status === 'Signed'">
+                        <i class="bi bi-check-lg"></i>                    
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

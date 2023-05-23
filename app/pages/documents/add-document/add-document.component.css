@@ -1,0 +1,52 @@
+
+.file-uploader {
+  margin-top: 20px;
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.file-uploader .ngx-dropzone-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.file-uploader .ngx-dropzone-label img {
+  margin-bottom: 10px;
+}
+
+.file-uploader .ngx-dropzone-preview {
+  margin-top: 10px;
+}
+
+.file-uploader .ngx-dropzone-preview .ngx-dropzone-label {
+  font-size: 12px;
+}
+
+/* Increase the width and height of the dialog */
+::ng-deep .my-dialog {
+  width: 80%;
+  max-width: 800px;
+  height: 80%;
+  max-height: 600px;
+}
+
+/* Add some padding between the form fields */
+::ng-deep .my-dialog form .form-group {
+  margin-bottom: 10px;
+}
+
+/* Adjust the width of the select boxes */
+::ng-deep .my-dialog form select {
+  width: 100%;
+}
+
+/* Adjust the height of the dropzone uploader */
+::ng-deep .my-dialog form .file-uploader ngx-dropzone {
+  height: 200px;
+}

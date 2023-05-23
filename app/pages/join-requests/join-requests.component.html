@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <table class="table align-middle mb-0 bg-white">
+          <thead class="bg-light">
+            <tr>
+              <th>Company Name</th>
+              <th>Invitation_Status</th>
+              <th>Comapany Owner</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let request of requests">
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="ms-3">
+                    <p class="fw-bold mb-1">{{ request.owner }}</p>
+                    <p class="text-muted mb-0">{{ request.email }}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <p class="fw-normal mb-1">{{ request.type }}</p>
+                <p class="text-muted mb-0">{{ request.privacy }}</p>
+              </td>
+              <td>
+                <span [ngClass]="{
+                  'text-success': request.request_status === 'done',
+                  'text-warning': request.request_status === 'in progress',
+                  'text-danger': request.request_status === 'refused'
+                }">
+                  {{ request.request_status }}
+                </span>
+                              </td> 
+              <td>{{ request.fileTitle }}</td>
+              <td>
+                <button type="button" class="btn btn-link btn-lg text-danger" (click)="Accept(request)" aria-label="Delete">
+                  <i class="bi bi-trash-fill"></i>
+                </button>
+                <button type="button" class="btn btn-link btn-lg text-danger" (click)="confirmDelete(request)" aria-label="Delete">
+                  <i class="bi bi-trash-fill"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
